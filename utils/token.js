@@ -13,6 +13,7 @@ const generateToken = (userId, res) => {
             httpOnly: true,
             sameSite: isProduction ? 'None' :'Lax',
             secure: isProduction,
+            path:'/',
         })
 
     } catch (error) {
