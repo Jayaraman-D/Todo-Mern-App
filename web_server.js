@@ -16,6 +16,7 @@ import todoRoute from './routes/todoRoute.js'
 const allowedOrigins = [
   "https://todo-frontend-dbrh.onrender.com",
   "http://localhost:5173",
+  "https://www.mongodb.com/docs/atlas/security-whitelist/"
 ];
 
 app.use(
