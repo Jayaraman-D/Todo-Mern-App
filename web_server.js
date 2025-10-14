@@ -13,11 +13,24 @@ import connectDB from './Database/connectDB.js'
 import authRoute from './routes/authRoute.js'
 import todoRoute from './routes/todoRoute.js'
 
+const allowedOrigins = [
+  "https://todo-frontend-dbrh.onrender.com",
+  "http://localhost:5173",
+];
 
-app.use(cors({
-    origin: 'http://localhost:5173',  // your frontend URL
-    credentials: true,                 // 👈 allows sending cookies
-}))
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // 👈 allows cookies or auth headers
+  })
+);
+
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
